@@ -1,0 +1,818 @@
+:root {
+    /* Colors */
+    --typography-1: #FFFFFF;
+    --typography-2: #8A94A7;
+    --typography-3: #3B404C;
+    --bg-1: #15181D;
+    --bg-2: #1D2026;
+    --bg-3: #242830;
+    --bg-4: #2C3039;
+    --primary-1: #0270D7;
+    --primary-2: #0F8AFD;
+    --primary-3: #0256A4;
+  
+    /* Typography */
+    --font-family-base: "IBM Plex Sans", sans-serif;
+    --font-family-heading: "IBM Plex Sans", sans-serif;
+    --font-family-code: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+    --font-family-pre: "Courier 10 Pitch", Courier, monospace;
+  
+    --font-size-alpha: 44px;
+    --line-height-alpha: 54px;
+    --font-size-beta: 38px;
+    --line-height-beta: 48px;
+    --font-size-gamma: 32px;
+    --line-height-gamma: 42px;
+    --font-size-delta: 24px;
+    --line-height-delta: 34px;
+    --font-size-epsilon: 20px;
+    --line-height-epsilon: 30px;
+    --font-size-zeta: 18px;
+    --line-height-zeta: 28px;
+    --font-size-eta: 16px;
+    --line-height-eta: 24px;
+    --font-size-theta: 14px;
+    --line-height-theta: 22px;
+  
+    /* Font weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+  
+    /* Structure */
+    --content-padding-mobile: 16px;
+    --content-padding-desktop: 24px;
+    --container-width: 1080px;
+    --container-width-sm: 800px;
+  }
+  
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background: color(bg, 2);
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    color: #FFFFFF;
+}
+
+hr {
+    border: 0;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 24px;
+    padding-left: 24px;
+}
+
+ul {
+    list-style: disc;
+}
+
+ol {
+    list-style: decimal;
+}
+
+li > ul,
+li > ol {
+    margin-bottom: 0;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+dt {
+    font-weight: 600; /* Pretpostavljam da se koristi 'font-weight: semibold;' */
+}
+
+dd {
+    margin-left: 24px;
+    margin-bottom: 24px;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+figure {
+    margin: 24px 0;
+}
+
+figcaption {
+    font-size: 1.5rem; /* Pretpostavljam da se koristi 'font-size(7, mobile, true, true);' */
+    padding: 8px 0;
+}
+
+img,
+svg {
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+tr {
+    border-bottom: 1px solid color(bg, 3);
+}
+
+th {
+    text-align: left;
+}
+
+th,
+td {
+    padding: 10px 16px;
+}
+
+th:first-child,
+td:first-child {
+    padding-left: 0;
+}
+
+th:last-child,
+td:last-child {
+    padding-right: 0;
+}
+
+
+.cta {
+    text-align: center;
+}
+
+.cta .section-inner {
+    padding: 48px 16px;
+}
+
+.cta .section-title {
+    margin-bottom: 40px;
+}
+
+.cta-inner {
+    position: relative;
+     
+    overflow: hidden;
+}
+
+.cta-inner::before {
+    content: '';
+    position: absolute;
+    right: 98px;
+    top: -117px;
+    width: 160px;
+    height: 187px;
+    background-image: url('./images/cta-illustration.svg');
+    background-repeat: no-repeat;
+}
+
+.cta-inner > * {
+    position: relative; /* To display elements above hero illustrations */
+}
+
+@media (min-width: 768px) {
+    .cta {
+        text-align: left;
+    }
+
+    .cta .section-inner {
+        padding: 64px 32px;
+    }
+
+    .cta .section-title {
+        margin-bottom: 0;
+        padding-right: 24px;
+    }
+
+    .cta-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.features-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-right: -32px;
+    margin-left: -32px;
+}
+
+.features-wrap:first-of-type {
+    margin-top: -16px;
+}
+
+.features-wrap:last-of-type {
+    margin-bottom: -16px;
+}
+
+.feature {
+    padding: 16px 32px;
+    width: 380px;
+    max-width: 380px;
+    flex-grow: 1;
+}
+
+.feature-inner {
+    height: 100%;
+}
+
+.feature-icon {
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .features-wrap:first-of-type {
+        margin-top: -24px;
+    }
+
+    .features-wrap:last-of-type {
+        margin-bottom: -24px;
+    }
+
+    .feature {
+        padding: 32px 32px;
+    }
+}
+
+.site-footer {
+    font-size: var(--font-size-8-mobile); /* Pretpostavljam da je ovo CSS varijabla, zameni sa stvarnom vrednošću ako je drugačije */
+}
+
+@media (min-width: 768px) {
+    .site-footer {
+        font-size: var(--font-size-8-desktop); /* Pretpostavljam da je ovo CSS varijabla, zameni sa stvarnom vrednošću ako je drugačije */
+    }
+}
+
+.site-footer a {
+    text-decoration: none; /* Pretpostavljam da je ovo CSS stil za anchor-aspect(footer), zameni sa stvarnom vrednošću ako je drugačije */
+}
+
+.site-footer-inner {
+    position: relative; /* To display all elements above the background color */
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.footer-brand,
+.footer-links,
+.footer-social-links,
+.footer-copyright {
+    flex: none;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.footer-brand,
+.footer-links,
+.footer-social-links {
+    margin-bottom: 24px;
+}
+
+.footer-social-links li {
+    display: inline-flex;
+}
+
+.footer-social-links li + li {
+    margin-left: 16px;
+}
+
+.footer-social-links a {
+    padding: 8px;
+}
+
+.footer-links li + li {
+    margin-left: 24px;
+}
+
+@media (min-width: 768px) {
+    .site-footer {
+        margin-top: 20px;
+    }
+
+    .site-footer-inner {
+        justify-content: space-between;
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-social-links,
+    .footer-copyright {
+        flex: 50%;
+    }
+
+    .footer-brand,
+    .footer-copyright {
+        justify-content: flex-start;
+    }
+
+    .footer-links,
+    .footer-social-links {
+        justify-content: flex-end;
+    }
+
+    .footer-links {
+        order: 1;
+        margin-bottom: 0;
+    }
+}
+
+.site-header {
+    padding: 24px 0;
+}
+
+.site-header-inner {
+    position: relative; /* To display all elements above the background color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-links {
+    display: inline-flex;
+}
+
+.header-links li {
+    display: inline-flex;
+}
+
+.header-links a:not(.button) {
+    font-size: var(--font-size-7-mobile); /* Pretpostavljam da je ovo CSS varijabla, zameni sa stvarnom vrednošću ako je drugačije */
+    font-weight: semibold;
+    text-decoration: none; /* Pretpostavljam da je ovo CSS stil za anchor-aspect(header), zameni sa stvarnom vrednošću ako je drugačije */
+    line-height: 16px;
+    padding: 8px 24px;
+}
+
+@media (min-width: 768px) {
+    .header-links a:not(.button) {
+        font-size: var(--font-size-7-desktop); /* Pretpostavljam da je ovo CSS varijabla, zameni sa stvarnom vrednošću ako je drugačije */
+    }
+
+    .site-header {
+        position: relative;
+    }
+
+    .site-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 700px;
+        background: var(--bg-3); /* Pretpostavljam da je ovo CSS varijabla, zameni sa stvarnom vrednošću ako je drugačije */
+        background: linear-gradient(80deg, rgba(var(--bg-3), .5) 0%, rgba(var(--bg-3), 0) 100%);
+        transform-origin: 0;
+        transform: skewY(-12deg);
+    }
+}
+
+.hero {
+    text-align: center;
+    padding-top: 48px;
+    padding-bottom: 88px;
+}
+
+.hero-copy {
+    position: relative; /* To display elements above hero illustrations */
+    z-index: 1;
+}
+
+.hero-cta {
+    margin-bottom: 40px;
+}
+
+.hero-figure {
+    position: relative;
+}
+
+.hero-figure svg {
+    width: 100%;
+    height: auto;
+}
+
+.hero-figure::before,
+.hero-figure::after {
+    content: '';
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.has-animations .hero-figure::before,
+.has-animations .hero-figure::after {
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.has-animations .anime-ready .hero-figure::before,
+.has-animations .anime-ready .hero-figure::after {
+    opacity: 1;
+}
+
+.hero-figure::before {
+    top: -57.8%;
+    left: -1.3%;
+    width: 152.84%;
+    height: 178.78%;
+    background-image: url('./images/hero-back-illustration.svg');
+}
+
+.hero-figure::after {
+    top: -35.6%;
+    left: 99.6%;
+    width: 57.2%;
+    height: 87.88%;
+    background-image: url('./images/hero-top-illustration.svg');
+}
+
+.hero-figure-box {
+    position: absolute;
+    top: 0;
+    will-change: transform;
+}
+
+.hero-figure-box-01,
+.hero-figure-box-02,
+.hero-figure-box-03,
+.hero-figure-box-04,
+.hero-figure-box-08,
+.hero-figure-box-09 {
+    overflow: hidden;
+}
+
+.hero-figure-box-01::before,
+.hero-figure-box-02::before,
+.hero-figure-box-03::before,
+.hero-figure-box-04::before,
+.hero-figure-box-08::before,
+.hero-figure-box-09::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform-origin: 100% 100%;
+}
+
+.hero-figure-box-01 {
+    left: 103.2%;
+    top: 41.9%;
+    width: 28.03%;
+    height: 37.37%;
+    background: linear-gradient(to left top, #00BFFB, rgba(#00BFFB, 0));
+    transform: rotateZ(45deg);
+}
+
+.hero-figure-box-01::before {
+    background: linear-gradient(to left, var(--bg-1) 0%, rgba(var(--bg-1), 0) 60%);
+    transform: rotateZ(45deg) scale(1.5);
+}
+
+.hero-figure-box-02 {
+    left: 61.3%;
+    top: 64.1%;
+    width: 37.87%;
+    height: 50.50%;
+    background: linear-gradient(to left top, var(--primary-1), rgba(var(--primary-1), 0));
+    transform: rotateZ(-45deg);
+}
+
+.hero-figure-box-02::before {
+    background: linear-gradient(to top, var(--bg-1) 0%, rgba(var(--bg-1), 0) 60%);
+    transform: rotateZ(-45deg) scale(1.5);
+}
+
+.hero-figure-box-03 {
+    left: 87.7%;
+    top: -56.8%;
+    width: 56.81%;
+    height: 75.75%;
+    background: linear-gradient(to left top, #00BFFB, rgba(#00BFFB, 0));
+}
+
+.hero-figure-box-03::before {
+    background: linear-gradient(to left, var(--bg-1) 0%, rgba(var(--bg-1), 0) 60%);
+    transform: rotateZ(45deg) scale(1.5);
+}
+
+.hero-figure-box-04 {
+    left: 54.9%;
+    top: -8%;
+    width: 45.45%;
+    height: 60.60%;
+    background: linear-gradient(to left top, var(--primary-1), rgba(var(--primary-1), 0));
+    transform: rotateZ(-135deg);
+}
+
+.hero-figure-box-04::before {
+    background: linear-gradient(to top, rgba(var(--typography-1), .24) 0%, rgba(var(--typography-1), 0) 60%);
+    transform: rotateZ(-45deg) scale(1.5);
+}
+
+.hero-figure-box-05,
+.hero-figure-box-06,
+.hero-figure-box-07 {
+    background-color: var(--bg-3);
+    box-shadow: -20px 32px 64px rgba(#000, .25);
+}
+
+.hero-figure-box-05 {
+    left: 17.4%;
+    top: 13.3%;
+    width: 64%;
+    height: 73.7%;
+    transform: perspective(500px) rotateY(-15deg) rotateX(8deg) rotateZ(-1deg);
+}
+
+.hero-figure-box-06 {
+    left: 65.5%;
+    top: 6.3%;
+    width: 30.3%;
+    height: 40.4%;
+    transform: rotateZ(20deg);
+}
+
+.hero-figure-box-07 {
+    left: 1.9%;
+    top: 42.4%;
+    width: 12.12%;
+    height: 16.16%;
+    transform: rotateZ(20deg);
+}
+
+.hero-figure-box-08 {
+    left: 27.1%;
+    top: 81.6%;
+    width: 19.51%;
+    height: 26.01%;
+    background: var(--primary-1);
+    transform: rotateZ(-22deg);
+}
+
+.hero-figure-box-08::before {
+    background: linear-gradient(to left, rgba(var(--typography-1), 0) 0%, rgba(var(--typography-1), .48) 100%);
+    transform: rotateZ(45deg) scale(1.5);
+}
+
+.hero-figure-box-09 {
+    left: 42.6%;
+    top: -17.9%;
+    width: 6.63%;
+    height: 8.83%;
+    background: #00BFFB;
+    transform: rotateZ(-52deg);
+}
+
+.hero-figure-box-09::before {
+    background: linear-gradient(to left, rgba(var(--typography-1), 0) 0%, rgba(var(--typography-1), .64) 100%);
+    transform: rotateZ(45deg) scale(1.5);
+}
+
+.hero-figure-box-10 {
+    left: -3.8%;
+    top: 4.3%;
+    width: 3.03%;
+    height: 4.04%;
+    background: rgba(#00BFFB, .32);
+    transform: rotateZ(-50deg);
+}
+
+@media (max-width: 768px) {
+    .hero-cta {
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-cta .button {
+        display: flex;
+    }
+
+    .hero-cta .button + .button {
+        margin-top: 16px;
+    }
+
+    .hero-figure::after,
+    .hero-figure-box-03,
+    .hero-figure-box-04,
+    .hero-figure-box-09 {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero {
+        text-align: left;
+        padding-top: 64px;
+        padding-bottom: 88px;
+    }
+
+    .hero-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hero-copy {
+        padding-right: 64px;
+        min-width: 552px;
+        width: 552px;
+        padding-left: 5%;
+        font-size:30px;
+    }
+
+    .hero-cta {
+        margin: 0;
+    }
+
+    .hero-cta .button {
+        min-width: 170px;
+    }
+
+    .hero-cta .button:first-child {
+        margin-right: 16px;
+    }
+
+    .hero-figure svg {
+        width: auto;
+    }
+}
+
+.is-boxed {
+    background: var(--bg-3);
+}
+
+.body-wrap {
+    background: var(--bg-2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.boxed-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); /* Pretpostavljam da je ovo CSS stil za shadow, zameni sa stvarnom vrednošću ako je drugačije */
+    mix-blend-mode: normal;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.section-inner {
+    position: relative; /* To always display inner elements above pseudo decorative stuff */
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+    .section-inner {
+        padding-top: 88px;
+        padding-bottom: 88px;
+    }
+}
+
+.pricing-header {
+    margin-bottom: 48px;
+}
+
+.pricing-tables-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: -12px;
+    margin-left: -12px;
+}
+
+.pricing-tables-wrap:first-child {
+    margin-top: -12px;
+}
+
+.pricing-tables-wrap:last-child {
+    margin-bottom: -12px;
+}
+
+.pricing-table {
+    position: relative;
+    padding: 12px;
+    width: 368px;
+    max-width: 368px;
+    flex-grow: 1;
+}
+
+.pricing-table::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 200%;
+    max-width: 200%;
+    height: 435px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    bottom: 18.8%;
+    transform: translateX(-50%);
+    background-image: url('./images/pricing-illustration.svg');
+}
+
+.pricing-table-header,
+.pricing-table-features-title,
+.pricing-table-features li {
+    border-bottom: 1px solid rgba(var(--typography-2), .24);
+}
+
+.pricing-table-inner {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    background: var(--bg-4);
+    padding: 24px;
+    height: 100%;
+}
+
+.pricing-table-inner > * {
+    position: relative; /* To display all elements above the box with shadow */
+    width: 100%;
+}
+
+.pricing-table-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1); /* Pretpostavljam da je ovo CSS stil za shadow, zameni sa stvarnom vrednošću ako je drugačije */
+}
+
+.pricing-table-price {
+    font-family: var(--font-family-heading); /* Pretpostavljam da je ovo CSS varijabla, zameni sa stvarnom vrednošću ako je drugačije */
+}
+
+.pricing-table-price-currency {
+    color: var(--typography-2);
+}
+
+.pricing-table-features-title {
+    color: var(--typography-1);
+    font-weight: bold;
+}
+
+.pricing-table-features li {
+    display: flex;
+    align-items: center;
+    padding: 14px 0;
+}
+
+.pricing-table-features li::before {
+    content: '';
+    width: 16px;
+    height: 12px;
+    margin-right: 16px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTUuNiA2LjRMMS42IDQgMCA1LjYgNS42IDEyIDE2IDEuNiAxNC40IDB6IiBmaWxsPSIjMDJDQkIxIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+}
+
+.pricing-table-cta {
+    align-self: flex-end;
+}
+
+@media (min-width: 768px) {
+    .pricing .section-paragraph {
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+
+    .pricing-header {
+        margin-bottom: 52px;
+    }
+}
