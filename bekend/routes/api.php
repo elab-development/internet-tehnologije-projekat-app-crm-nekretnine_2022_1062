@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\TransactionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,3 +41,10 @@ Route::get('properties/{id}', [PropertyController::class, 'show']);
 Route::post('properties', [PropertyController::class, 'store'])->middleware('auth:sanctum');
 Route::put('properties/{id}', [PropertyController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('properties/{id}', [PropertyController::class, 'destroy'])->middleware('auth:sanctum');
+
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('transactions', TransactionController::class);
+});
