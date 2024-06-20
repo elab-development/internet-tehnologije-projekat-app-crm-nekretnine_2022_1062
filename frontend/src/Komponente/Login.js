@@ -2,12 +2,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Register.css';   
+import './Register.css';
+import FormInput from './FormInput';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: 'admin@example.com',
-    password: 'password'
+    email: '',
+    password: ''
   });
 
   const [error, setError] = useState('');
@@ -44,14 +45,22 @@ const Login = () => {
         {error && <p className="form-error">{error}</p>}
         {success && <p className="form-success">{success}</p>}
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-          </div>
+          <FormInput
+            label="Email"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <FormInput
+            label="Password"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
           <button type="submit" className="button button-primary">Login</button>
         </form>
       </div>
