@@ -13,7 +13,7 @@ const useFetchProperties = () => {
         const response = await axios.get('http://127.0.0.1:8000/api/properties', {
           headers: { Authorization: `Bearer ${token}` }
         });
-        setProperties(response.data.data);
+        setProperties(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);

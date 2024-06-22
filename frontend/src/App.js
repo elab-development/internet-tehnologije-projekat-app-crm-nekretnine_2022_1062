@@ -5,6 +5,7 @@ import Home from './Komponente/Home';
 import Login from './Komponente/Login';
 import Register from './Komponente/Register';
 import Navbar from './Komponente/Navbar';
+import Clients from './Komponente/Clients';
 
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem('auth_token'));
@@ -17,6 +18,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/register" element={<Register setToken={setToken} />} />
+          <Route path="/clients" element={<Clients />} />
+
         </Routes>
       </div>
     </Router>

@@ -13,7 +13,7 @@ const useFetchTransactions = () => {
         const response = await axios.get('http://127.0.0.1:8000/api/transactions', {
           headers: { Authorization: `Bearer ${token}` }
         });
-        setTransactions(response.data.data);
+        setTransactions(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);

@@ -1,0 +1,44 @@
+.clients-container {
+    background-color: var(--bg-3);
+    padding: 20px;
+  }
+  
+  .clients-title {
+    color: var(--primary-1);
+  }
+  
+  .clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .clients-table th,
+  .clients-table td {
+    padding: 10px;
+    border: 1px solid var(--primary-2);
+  }
+  
+  .clients-table th {
+    background-color: var(--primary-1);
+    color: white;
+  }
+  
+  .clients-table tr:nth-child(even) {
+    background-color: var(--bg-2);
+  }
+  
+  .clients-table tr:nth-child(odd) {
+    background-color: var(--bg-1);
+  }
+  
+  .clients-table tbody tr:hover {
+    background-color: var(--highlight);
+    color: white;
+  }
+  
+  .loading,
+  .error {
+    color: var(--typography-2);
+  }
+  

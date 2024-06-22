@@ -13,7 +13,7 @@ const useFetchClients = () => {
         const response = await axios.get('http://127.0.0.1:8000/api/clients', {
           headers: { Authorization: `Bearer ${token}` }
         });
-        setClients(response.data.data);
+        setClients(response.data);
         setLoading(false);
       } catch (error) {
         setError(error);
