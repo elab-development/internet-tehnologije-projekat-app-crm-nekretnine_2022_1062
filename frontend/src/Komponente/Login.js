@@ -1,14 +1,13 @@
- 
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Register.css';
 import FormInput from './FormInput';
 
-const Login = () => {
+const Login = ({ setToken }) => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: 'admin@example.com',
+    password: 'password'
   });
 
   const [error, setError] = useState('');
@@ -29,10 +28,11 @@ const Login = () => {
       const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
       const { user, token } = response.data;
       sessionStorage.setItem('user', JSON.stringify(user));
-      sessionStorage.setItem('token', token);
+      sessionStorage.setItem('auth_token', token);
+      setToken(token);
       setSuccess('Login successful!');
       setError('');
-      navigate('/main');
+      navigate('/');
     } catch (err) {
       setError('Login failed. Please try again.');
     }

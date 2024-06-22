@@ -26,16 +26,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-
-
-Route::get('clients', [ClientController::class, 'index']);
-Route::get('clients/{id}', [ClientController::class, 'show']);
-Route::post('clients', [ClientController::class, 'store']);
-Route::put('clients/{id}', [ClientController::class, 'update']);
-Route::delete('clients/{id}', [ClientController::class, 'destroy']);
-
-
-
+ 
 Route::get('properties', [PropertyController::class, 'index']);
 Route::get('properties/{id}', [PropertyController::class, 'show']);
 Route::post('properties', [PropertyController::class, 'store'])->middleware('auth:sanctum');
@@ -46,5 +37,13 @@ Route::delete('properties/{id}', [PropertyController::class, 'destroy'])->middle
 
 
 Route::middleware('auth:sanctum')->group(function () {
+
+
+    Route::get('clients', [ClientController::class, 'index']);
+    Route::get('clients/{id}', [ClientController::class, 'show']);
+    Route::post('clients', [ClientController::class, 'store']);
+    Route::put('clients/{id}', [ClientController::class, 'update']);
+    Route::delete('clients/{id}', [ClientController::class, 'destroy']);
+
     Route::apiResource('transactions', TransactionController::class);
 });
