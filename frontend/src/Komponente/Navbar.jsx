@@ -27,7 +27,7 @@ const Navbar = ({ token, setToken }) => {
         <li><Link to="/">Home</Link></li>
         {token ? (
             <>
-            
+            <li><Link to="/properties">Properties</Link></li>
             <li><Link to="/clients">Clients</Link></li>
           <li><button onClick={handleLogout}>Logout</button></li>
             

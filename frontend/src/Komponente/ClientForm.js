@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './ClientForm.css';
 
 const ClientForm = ({ client, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -56,7 +57,7 @@ const ClientForm = ({ client, onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="client-form">
       <input
         type="text"
         name="client_name"

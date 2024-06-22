@@ -1,0 +1,43 @@
+.property-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .property-form input,
+  .property-form textarea {
+    padding: 10px;
+    border: 1px solid var(--bg-3);
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: var(--bg-4);
+    color: var(--typography-1);
+  }
+  
+  .property-form input:focus,
+  .property-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-2);
+  }
+  
+  .property-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .property-form button {
+    padding: 10px 20px;
+    background-color: var(--primary-1);
+    color: var(--typography-1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .property-form button:hover {
+    background-color: var(--primary-2);
+  }
+  
