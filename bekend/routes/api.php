@@ -38,6 +38,7 @@ Route::delete('properties/{id}', [PropertyController::class, 'destroy'])->middle
 
 Route::middleware('auth:sanctum')->group(function () {
 
+    Route::get('users', [AuthController::class, 'index']);
 
     Route::get('clients', [ClientController::class, 'index']);
     Route::get('clients/{id}', [ClientController::class, 'show']);
