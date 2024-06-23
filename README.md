@@ -1,1 +1,1 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/1IMeAlJr)
+ Aplikacija CRM za agenciju za nekretnine služi kao sistem za upravljanje poslovanjem agencije. Omogućava korisnicima autorizaciju kroz procese prijave (logovanja) i odjave (logauta). Prijava je neophodna za pristup različitim funkcionalnostima aplikacije koje su podeljene u četiri osnovne kategorije: korisnici, klijenti, nekretnine i transakcije.
