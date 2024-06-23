@@ -30,6 +30,8 @@ const Navbar = ({ token, setToken }) => {
             <li><Link to="/transactions">Transactions</Link></li>
             <li><Link to="/properties">Properties</Link></li>
             <li><Link to="/clients">Clients</Link></li>
+            <li><Link to="/airquality">AirQuality</Link></li>
+
           <li><button onClick={handleLogout}>Logout</button></li>
             
             </>

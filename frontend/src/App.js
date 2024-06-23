@@ -9,6 +9,7 @@ import Clients from './Komponente/Clients';
 import Properties from './Komponente/Properties';
 import Transactions from './Komponente/Transactions';
 import AirQualityComponent from './Komponente/AirQualityComponent';
+import UsersTableComponent from './Komponente/UsersTableComponent';
 
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem('auth_token'));
@@ -20,13 +21,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
-          <Route path="/register" element={<Register setToken={setToken} />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/transactions" element={<Transactions />} />
 
 
+
+
+          <Route path="/admin/dodajKorisnika" element={<Register setToken={setToken} />} />
           <Route path="/airquality" element={<AirQualityComponent />} />
+          <Route path="/admin/users" element={<UsersTableComponent />} />
+
 
 
         </Routes>
