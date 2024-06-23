@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import useFetchUsers from './useFetchUsers'; 
-import './UsersTableComponent.css';
+import './UsersTableComponent.css'; 
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import useFetchUserTransactions from './useFetchUserTransaction';
 
 const UsersTableComponent = () => {
@@ -28,6 +30,23 @@ const UsersTableComponent = () => {
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    doc.text(`Transactions for User ID: ${selectedUserId}`, 10, 10);
+    doc.autoTable({
+      head: [['ID', 'Property', 'Client', 'User', 'Date', 'Amount']],
+      body: transactions.map(transaction => [
+        transaction.id,
+        transaction.property_id,
+        transaction.client_id,
+        transaction.user_id,
+        transaction.transaction_date,
+        transaction.amount
+      ])
+    });
+    doc.save(`transactions_user_${selectedUserId}.pdf`);
   };
 
   if (loading) return <div className="loading">Loading...</div>;
@@ -82,30 +101,33 @@ const UsersTableComponent = () => {
           ) : transactionsError ? (
             <div className="error">Error fetching transactions: {transactionsError.message}</div>
           ) : (
-            <table className="transactions-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Property</th>
-                  <th>Client</th>
-                  <th>User</th>
-                  <th>Date</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.map(transaction => (
-                  <tr key={transaction.id}>
-                    <td>{transaction.id}</td>
-                    <td>{transaction.property_id}</td>
-                    <td>{transaction.client_id}</td>
-                    <td>{transaction.user_id}</td>
-                    <td>{transaction.transaction_date}</td>
-                    <td>{transaction.amount}</td>
+            <>
+              <button onClick={downloadPDF} className="download-button">Download PDF</button>
+              <table className="transactions-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Property</th>
+                    <th>Client</th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Amount</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {transactions.map(transaction => (
+                    <tr key={transaction.id}>
+                      <td>{transaction.id}</td>
+                      <td>{transaction.property_id}</td>
+                      <td>{transaction.client_id}</td>
+                      <td>{transaction.user_id}</td>
+                      <td>{transaction.transaction_date}</td>
+                      <td>{transaction.amount}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
           )}
         </div>
       )}
