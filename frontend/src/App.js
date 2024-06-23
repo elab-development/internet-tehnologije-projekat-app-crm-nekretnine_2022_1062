@@ -23,12 +23,12 @@ function App() {
           <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/properties" element={<Properties />} />
-          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/transactions" element={<Transactions />} /> {/*dodato sortiranje i pretraga */}
 
 
 
 
-          <Route path="/admin/dodajKorisnika" element={<Register setToken={setToken} />} />
+          <Route path="/admin/dodajKorisnika" element={<Register setToken={setToken} />} />  {/*promenjena ruta */}
           <Route path="/airquality" element={<AirQualityComponent />} />
           <Route path="/admin/users" element={<UsersTableComponent />} />
 

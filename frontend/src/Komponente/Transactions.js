@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useFetchTransactions from './useFetchTransactions';
 import useFetchClients from './useFetchClients';
 import useFetchProperties from './useFetchProperties';
@@ -10,6 +10,10 @@ const Transactions = () => {
   const { clients, loading: clientsLoading, error: clientsError } = useFetchClients();
   const { properties, loading: propertiesLoading, error: propertiesError } = useFetchProperties();
   const { users, loading: usersLoading, error: usersError } = useFetchUsers();
+
+  const [search, setSearch] = useState('');
+  const [sortKey, setSortKey] = useState('id');
+  const [sortOrder, setSortOrder] = useState('asc');
 
   if (transactionsLoading || clientsLoading || propertiesLoading || usersLoading) {
     return <p className="loading">Loading data...</p>;
@@ -34,22 +38,68 @@ const Transactions = () => {
     return user ? user.name : 'Unknown';
   };
 
+  const handleSort = (key) => {
+    if (sortKey === key) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortKey(key);
+      setSortOrder('asc');
+    }
+  };
+
+  const filteredTransactions = transactions.filter((transaction) => {
+    const clientName = getClientName(transaction.client_id).toLowerCase();
+    const propertyDetails = getPropertyDetails(transaction.property_id).toLowerCase();
+    const userName = getUserName(transaction.user_id).toLowerCase();
+    const searchTerm = search.toLowerCase();
+    return (
+      clientName.includes(searchTerm) ||
+      propertyDetails.includes(searchTerm) ||
+      userName.includes(searchTerm) ||
+      transaction.id.toString().includes(searchTerm) ||
+      transaction.transaction_date.toLowerCase().includes(searchTerm) ||
+      transaction.amount.toString().includes(searchTerm)
+    );
+  });
+
+  const sortedTransactions = [...filteredTransactions].sort((a, b) => {
+    const aValue = sortKey === 'client' ? getClientName(a.client_id) :
+                   sortKey === 'property' ? getPropertyDetails(a.property_id) :
+                   sortKey === 'user' ? getUserName(a.user_id) :
+                   a[sortKey];
+    const bValue = sortKey === 'client' ? getClientName(b.client_id) :
+                   sortKey === 'property' ? getPropertyDetails(b.property_id) :
+                   sortKey === 'user' ? getUserName(b.user_id) :
+                   b[sortKey];
+
+    if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
+    if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
+    return 0;
+  });
+
   return (
     <div className="transactions-container">
       <h2 className="transactions-title">Transactions</h2>
+      <input
+        type="text"
+        placeholder="Search transactions"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="search-input"
+      />
       <table className="transactions-table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Property</th>
-            <th>Client</th>
-            <th>User</th>
-            <th>Date</th>
-            <th>Amount</th>
+            <th onClick={() => handleSort('id')}>ID</th>
+            <th onClick={() => handleSort('property')}>Property</th>
+            <th onClick={() => handleSort('client')}>Client</th>
+            <th onClick={() => handleSort('user')}>User</th>
+            <th onClick={() => handleSort('transaction_date')}>Date</th>
+            <th onClick={() => handleSort('amount')}>Amount</th>
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction) => (
+          {sortedTransactions.map((transaction) => (
             <tr key={transaction.id}>
               <td>{transaction.id}</td>
               <td>{getPropertyDetails(transaction.property_id)}</td>
