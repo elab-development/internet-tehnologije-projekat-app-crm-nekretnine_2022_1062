@@ -77,4 +77,18 @@ class TransactionController extends Controller
         $transaction->delete();
         return response()->json(['message' => 'Transaction deleted successfully'], 200);
     }
+
+    // Dodata metoda za dobijanje transakcija određenog korisnika
+    public function getTransactionsByUserId($userId)
+    {
+        $transactions = Transaction::where('user_id', $userId)->get();
+        return response()->json($transactions, 200);
+    }
+
+    // Dodata metoda za dobijanje transakcija određenog klijenta
+    public function getTransactionsByClientId($clientId)
+    {
+        $transactions = Transaction::where('client_id', $clientId)->get();
+        return response()->json($transactions, 200);
+    }
 }

@@ -45,6 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('clients', [ClientController::class, 'store']);
     Route::put('clients/{id}', [ClientController::class, 'update']);
     Route::delete('clients/{id}', [ClientController::class, 'destroy']);
-
+    Route::get('transactions/user/{userId}', [TransactionController::class, 'getTransactionsByUserId']);
+    Route::get('transactions/client/{clientId}', [TransactionController::class, 'getTransactionsByClientId']);
     Route::apiResource('transactions', TransactionController::class);
 });
