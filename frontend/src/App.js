@@ -10,6 +10,7 @@ import Properties from './Komponente/Properties';
 import Transactions from './Komponente/Transactions';
 import AirQualityComponent from './Komponente/AirQualityComponent';
 import UsersTableComponent from './Komponente/UsersTableComponent';
+import TransactionForm from './Komponente/TransactionForm';
 
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem('auth_token'));
@@ -32,6 +33,7 @@ function App() {
           <Route path="/airquality" element={<AirQualityComponent />} />
           <Route path="/admin/users" element={<UsersTableComponent />} />
 
+          <Route path="/transactions/dodaj" element={<TransactionForm />} />
 
 
         </Routes>

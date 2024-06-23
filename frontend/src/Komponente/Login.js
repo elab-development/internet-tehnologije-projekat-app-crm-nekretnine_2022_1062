@@ -32,7 +32,13 @@ const Login = ({ setToken }) => {
       setToken(token);
       setSuccess('Login successful!');
       setError('');
-      navigate('/transactions');
+      if(user.admin==1){
+        navigate('/admin/users');
+        
+      }else{
+        navigate('/transactions');
+
+      }
     } catch (err) {
       setError('Login failed. Please try again.');
     }
