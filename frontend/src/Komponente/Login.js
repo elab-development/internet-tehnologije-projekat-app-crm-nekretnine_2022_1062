@@ -32,7 +32,7 @@ const Login = ({ setToken }) => {
       setToken(token);
       setSuccess('Login successful!');
       setError('');
-      navigate('/');
+      navigate('/transactions');
     } catch (err) {
       setError('Login failed. Please try again.');
     }

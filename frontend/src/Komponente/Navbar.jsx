@@ -13,7 +13,7 @@ const Navbar = ({ token, setToken }) => {
         headers: { Authorization: `Bearer ${token}` }
       });
       sessionStorage.removeItem('auth_token');
-      sessionStorage.removeItem('user_id');
+      sessionStorage.removeItem('user');
       setToken(null);
       navigate('/login');
     } catch (error) {
