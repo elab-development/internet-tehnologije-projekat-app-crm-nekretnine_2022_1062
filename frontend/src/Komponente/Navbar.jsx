@@ -5,6 +5,7 @@ import './Navbar.css';
 
 const Navbar = ({ token, setToken }) => {
   const navigate = useNavigate();
+  const user = JSON.parse(sessionStorage.getItem('user'));
 
   const handleLogout = async () => {
     const token = sessionStorage.getItem('auth_token');
@@ -26,20 +27,26 @@ const Navbar = ({ token, setToken }) => {
       <ul className="navbar-links">
         <li><Link to="/">Home</Link></li>
         {token ? (
-            <>
-            <li><Link to="/transactions">Transactions</Link></li>
-            <li><Link to="/properties">Properties</Link></li>
-            <li><Link to="/clients">Clients</Link></li>
-            <li><Link to="/airquality">AirQuality</Link></li>
-
-          <li><button onClick={handleLogout}>Logout</button></li>
-            
-            </>
+          <>
+            {user && user.admin ? (
+              <>
+                <li><Link to="/admin/users">Users</Link></li>
+                <li><Link to="/admin/dodajKorisnika">Add User</Link></li>
+              </>
+            ) : (
+              <>
+                <li><Link to="/transactions">Transactions</Link></li>
+                <li><Link to="/properties">Properties</Link></li>
+                <li><Link to="/clients">Clients</Link></li>
+                <li><Link to="/airquality">Air Quality</Link></li>
+              </>
+            )}
+            <li><button onClick={handleLogout}>Logout</button></li>
+          </>
         ) : (
           <>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Register</Link></li>
-            
           </>
         )}
       </ul>

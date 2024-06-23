@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useFetchTransactions from './useFetchTransactions';
 import useFetchClients from './useFetchClients';
 import useFetchProperties from './useFetchProperties';
@@ -14,6 +15,8 @@ const Transactions = () => {
   const [search, setSearch] = useState('');
   const [sortKey, setSortKey] = useState('id');
   const [sortOrder, setSortOrder] = useState('asc');
+
+  const navigate = useNavigate();
 
   if (transactionsLoading || clientsLoading || propertiesLoading || usersLoading) {
     return <p className="loading">Loading data...</p>;
@@ -87,6 +90,7 @@ const Transactions = () => {
         onChange={(e) => setSearch(e.target.value)}
         className="search-input"
       />
+      <button onClick={() => navigate('/transactions/dodaj')} className="button button-primary">Add Transaction</button>
       <table className="transactions-table">
         <thead>
           <tr>
